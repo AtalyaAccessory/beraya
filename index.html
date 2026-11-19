@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#190d17">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Beray’a küçük bir kalp ve içten bir not.">
+  <title>Beray’a, Ferhat’tan ♡</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ivory: #fbebe5;
+      --rose: #f2a9ba;
+      --muted: #d8acba;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { min-height: 100%; }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      color: var(--ivory);
+      background: #190d17;
+      font-family: var(--sans);
+    }
+
+    .page {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      justify-items: center;
+      align-items: center;
+      min-height: 100svh;
+      padding: clamp(2.2rem, 6svh, 4.4rem) 1.5rem clamp(1.9rem, 4.7svh, 3.7rem);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 38%, #7c365061 0%, transparent 59%),
+        radial-gradient(ellipse at 52% 63%, #442236 0%, #251223 53%, #140b14 100%);
+    }
+
+    .frame {
+      position: absolute;
+      inset: clamp(.65rem, 2.3vw, 1.75rem);
+      pointer-events: none;
+      border: 1px solid #eeb0bb38;
+      z-index: -1;
+    }
+
+    .corner {
+      position: absolute;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-top: 1px solid #f5bcbead;
+      border-left: 1px solid #f5bcbead;
+    }
+
+    .corner:nth-child(1) { top: -1px; left: -1px; }
+    .corner:nth-child(2) { top: -1px; right: -1px; rotate: 90deg; }
+    .corner:nth-child(3) { bottom: -1px; right: -1px; rotate: 180deg; }
+    .corner:nth-child(4) { bottom: -1px; left: -1px; rotate: 270deg; }
+
+    .stars {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .dedication {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .85rem;
+      color: var(--muted);
+      font-size: .875rem;
+      font-weight: 600;
+      letter-spacing: .25em;
+    }
+
+    .dedication::before, .dedication::after {
+      content: '';
+      width: clamp(1.5rem, 5vw, 3.2rem);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e7a2b58e);
+    }
+
+    .dedication::after { scale: -1 1; }
+
+    main {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      width: min(100%, 44rem);
+      padding: 1.15rem 0 1.45rem;
+    }
+
+    .heart {
+      position: relative;
+      width: min(100%, clamp(18rem, 53svh, 29rem));
+      aspect-ratio: 43 / 34;
+      margin-bottom: .1rem;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 89%;
+      aspect-ratio: 1;
+      translate: -50% -50%;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .heart::before {
+      background: radial-gradient(circle, #d67a9038, #b95d8018 47%, transparent 68%);
+    }
+
+    .heart::after {
+      width: 96%;
+      aspect-ratio: 1.53;
+      border: 1px solid #f0a9bc29;
+      rotate: -25deg;
+    }
+
+    #heart-line {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 5px #f99ab57a) drop-shadow(0 0 16px #f47b9aa1);
+    }
+
+    .initial {
+      position: absolute;
+      z-index: 3;
+      top: 45%;
+      left: 50%;
+      translate: -54% -50%;
+      font: italic clamp(5rem, 18svh, 9.25rem)/1 var(--serif);
+      color: #ffe4df;
+      text-shadow: 0 0 2rem #fd8caf69;
+    }
+
+    .heart.is-drawing .initial {
+      animation: appear .8s 1.85s both;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(.4rem) scale(.94); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .spark {
+      position: absolute;
+      z-index: 1;
+      display: block;
+      width: var(--size, .85rem);
+      aspect-ratio: 1;
+      background: #ffd3c9;
+      filter: drop-shadow(0 0 4px #ffd3c9);
+      clip-path: polygon(50% 0, 60% 39%, 100% 50%, 60% 61%, 50% 100%, 40% 61%, 0 50%, 40% 39%);
+    }
+
+    .spark:nth-of-type(1) { top: 21%; left: 15%; --size: 1.05rem; }
+    .spark:nth-of-type(2) { top: 18%; right: 12%; --size: 1.2rem; }
+    .spark:nth-of-type(3) { top: 72%; left: 16%; --size: .55rem; opacity: .73; }
+    .spark:nth-of-type(4) { top: 66%; right: 11%; --size: .85rem; opacity: .8; }
+    .spark:nth-of-type(5) { top: 9%; right: 32%; --size: .55rem; opacity: .67; }
+
+    h1 {
+      margin: 0;
+      max-width: 100%;
+      font: 400 clamp(2.25rem, 7.1vw, 5rem)/1.06 var(--serif);
+      letter-spacing: -.07em;
+      text-wrap: balance;
+    }
+
+    h1 em {
+      color: var(--rose);
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .subtitle {
+      margin: .85rem 0 1.6rem;
+      color: #ead0d6;
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      line-height: 1.55;
+    }
+
+    .note-button, .close-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: .65rem;
+      min-height: 3rem;
+      padding: .68rem 1.35rem;
+      border: 1px solid #f0b2c085;
+      border-radius: 99rem;
+      background: #f6b3bf12;
+      color: var(--ivory);
+      font: 500 .9375rem/1.3 var(--sans);
+      cursor: pointer;
+      transition: background .22s ease, border-color .22s ease;
+    }
+
+    .note-button:hover, .close-button:hover {
+      background: #f6b3bf27;
+      border-color: var(--rose);
+    }
+
+    :focus-visible {
+      outline: 2px solid #ffe4d9;
+      outline-offset: 5px;
+    }
+
+    .button-heart {
+      color: var(--rose);
+      font: 1.25rem/1 var(--serif);
+    }
+
+    footer {
+      color: var(--muted);
+      font: italic 1.03rem/1.3 var(--serif);
+    }
+
+    dialog {
+      width: min(28rem, calc(100% - 2.5rem));
+      max-height: calc(100svh - 2.5rem);
+      padding: clamp(1.75rem, 7vw, 3.2rem);
+      border: 1px solid #f1abb77d;
+      border-radius: .6rem;
+      background: radial-gradient(ellipse at 13% 0, #63364e, #321a2d 69%);
+      color: var(--ivory);
+      box-shadow: 0 1.25rem 4rem #0d050bb3;
+      text-align: center;
+    }
+
+    dialog::backdrop { background: #140914c9; backdrop-filter: blur(6px); }
+    dialog[open] { animation: appear .28s ease-out both; }
+
+    dialog h2 {
+      margin: .35rem 0 1rem;
+      color: #ffd0d6;
+      font: italic 400 clamp(2.1rem, 8vw, 3.3rem)/1.12 var(--serif);
+      letter-spacing: -.05em;
+    }
+
+    dialog p {
+      margin: 0 0 .9rem;
+      color: #fae7e8;
+      font: 1.15rem/1.55 var(--serif);
+      text-wrap: pretty;
+    }
+
+    dialog .letter-signature {
+      color: var(--rose);
+      font-style: italic;
+      margin: 1.3rem 0 1.5rem;
+    }
+
+    @media (max-width: 36rem) {
+      .page { padding-inline: 1.2rem; }
+      .heart { width: min(100%, 22rem, max(15rem, 52svh)); }
+      .initial { font-size: clamp(4.6rem, 23vw, 7rem); }
+      h1 { letter-spacing: -.065em; }
+    }
+
+    @media (max-height: 42rem) {
+      .page { padding-block: 1.75rem; }
+      main { padding-block: .85rem; }
+      .heart { width: min(100%, max(14rem, 51svh)); }
+      .initial { font-size: clamp(4.4rem, 15svh, 7rem); }
+      .subtitle { margin-block: .55rem 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <canvas class="stars" aria-hidden="true"></canvas>
+    <div class="frame" aria-hidden="true">
+      <i class="corner"></i><i class="corner"></i><i class="corner"></i><i class="corner"></i>
+    </div>
+
+    <header class="dedication">BERAY’A</header>
+
+    <main>
+      <div class="heart" role="img" aria-label="Ortasında B harfi olan pembe bir kalp">
+        <i class="spark" aria-hidden="true"></i><i class="spark" aria-hidden="true"></i>
+        <i class="spark" aria-hidden="true"></i><i class="spark" aria-hidden="true"></i>
+        <i class="spark" aria-hidden="true"></i>
+        <canvas id="heart-line" width="860" height="680" aria-hidden="true"></canvas>
+        <noscript><span aria-hidden="true" style="position:absolute; inset:0; font:15rem/.95 Georgia,serif; color:#f2a9ba">♡</span></noscript>
+        <span class="initial" aria-hidden="true">B</span>
+      </div>
+      <h1>İyi ki varsın, <em>Beray.</em></h1>
+      <p class="subtitle">Kalbimin en güzel yeri senin.</p>
+      <button class="note-button" type="button" aria-haspopup="dialog">
+        <span class="button-heart" aria-hidden="true">♡</span>
+        Sana bir not
+      </button>
+    </main>
+
+    <footer>Ferhat’tan, sevgiyle.</footer>
+  </div>
+
+  <dialog aria-labelledby="note-title">
+    <span class="button-heart" aria-hidden="true">♡</span>
+    <h2 id="note-title">Beray’ım,</h2>
+    <p>Seninle en sıradan günün bile hatırlamak istediğim bir yanı oluyor. Bazen bir gülüşün, bazen de yanımda oluşun yetiyor.</p>
+    <p>Bu kalbi sana çizdim. Ne zaman açarsan, yüzünde küçük bir gülümseme olsun diye.</p>
+    <p class="letter-signature">Seni seviyorum. ♡</p>
+    <form method="dialog"><button class="close-button" autofocus>Kapat</button></form>
+  </dialog>
+
+  <script>
+    const page = document.querySelector('.page');
+    const sky = document.querySelector('.stars');
+    const skyContext = sky.getContext('2d');
+    const heart = document.querySelector('.heart');
+    const line = document.querySelector('#heart-line');
+    const ink = line.getContext('2d');
+    const note = document.querySelector('dialog');
+    const noteButton = document.querySelector('.note-button');
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+
+    noteButton.addEventListener('click', () => note.showModal());
+
+    function drawStars() {
+      const { width, height } = page.getBoundingClientRect();
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      sky.width = Math.round(width * ratio);
+      sky.height = Math.round(height * ratio);
+      skyContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+      let seed = 713;
+      function random() {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      }
+
+      const count = Math.round(Math.min(360, Math.max(110, width * height / 3900)));
+      for (let i = 0; i < count; i += 1) {
+        const x = 16 + random() * (width - 32);
+        const y = 14 + random() * (height - 28);
+        const size = .28 + random() ** 2 * 1.3;
+        const light = .17 + random() * .5;
+        skyContext.fillStyle = 'rgba(255, 208, 218, ' + light + ')';
+        skyContext.beginPath();
+        skyContext.arc(x, y, size, 0, Math.PI * 2);
+        skyContext.fill();
+      }
+    }
+
+    if (skyContext) {
+      drawStars();
+      new ResizeObserver(drawStars).observe(page);
+    }
+
+    if (ink) {
+      const curves = [
+        [[215, 303], [189, 282], [73, 207], [57, 137]],
+        [[57, 137], [39, 60], [110, 27], [163, 53]],
+        [[163, 53], [185, 64], [204, 81], [215, 105]],
+        [[215, 105], [226, 81], [245, 64], [267, 53]],
+        [[267, 53], [320, 27], [391, 60], [373, 137]],
+        [[373, 137], [357, 207], [241, 282], [215, 303]]
+      ];
+
+      const points = [{ x: 215, y: 303, distance: 0 }];
+      for (const curve of curves) {
+        for (let step = 1; step <= 45; step += 1) {
+          const t = step / 45;
+          const u = 1 - t;
+          const weights = [u ** 3, 3 * u * u * t, 3 * u * t * t, t ** 3];
+          const x = curve.reduce((sum, point, i) => sum + point[0] * weights[i], 0);
+          const y = curve.reduce((sum, point, i) => sum + point[1] * weights[i], 0);
+          const previous = points[points.length - 1];
+          points.push({ x, y, distance: previous.distance + Math.hypot(x - previous.x, y - previous.y) });
+        }
+      }
+
+      ink.scale(2, 2);
+      const stroke = ink.createLinearGradient(50, 43, 365, 300);
+      stroke.addColorStop(0, '#f38eaa');
+      stroke.addColorStop(.45, '#ffcec7');
+      stroke.addColorStop(1, '#eb81a1');
+      ink.lineWidth = 2.8;
+      ink.lineCap = 'round';
+      ink.lineJoin = 'round';
+      ink.strokeStyle = stroke;
+      const total = points[points.length - 1].distance;
+
+      function drawHeart(progress) {
+        ink.clearRect(0, 0, 430, 340);
+        if (progress <= 0) return;
+        const distance = total * progress;
+        ink.beginPath();
+        ink.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < points.length; i += 1) {
+          const current = points[i];
+          if (current.distance > distance) {
+            const previous = points[i - 1];
+            const fraction = (distance - previous.distance) / (current.distance - previous.distance);
+            ink.lineTo(previous.x + (current.x - previous.x) * fraction, previous.y + (current.y - previous.y) * fraction);
+            break;
+          }
+          ink.lineTo(current.x, current.y);
+        }
+        if (progress === 1) ink.closePath();
+        ink.stroke();
+      }
+
+      if (motion.matches) {
+        drawHeart(1);
+      } else {
+        heart.classList.add('is-drawing');
+        const start = performance.now() + 100;
+        function animate(now) {
+          const elapsed = Math.max(0, Math.min(1, (now - start) / 1820));
+          const progress = elapsed * elapsed * (3 - 2 * elapsed);
+          drawHeart(motion.matches ? 1 : progress);
+          if (elapsed < 1 && !motion.matches) requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+      }
+    }
+  </script>
+</body>
+</html>
